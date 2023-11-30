@@ -1,5 +1,6 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
@@ -85,7 +86,7 @@ public class MRMachineRecipeLoader {
             // Deconstruction
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
-                        .fluidInputs(materialFluid.getFluid(1000))
+                        .fluidInputs(materialFluid.getFluid(FluidStorageKeys.LIQUID, 1000))
                         .fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
                         .fluidOutputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                         .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5,5)
@@ -109,7 +110,7 @@ public class MRMachineRecipeLoader {
                                 NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                         NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialFluid.toString())))
                         .setNonConsumable())
-                        .fluidOutputs(materialFluid.getFluid(1000))
+                        .fluidOutputs(materialFluid.getFluid(FluidStorageKeys.LIQUID, 1000))
                         .replicate(materialFluid)
                         .duration(BaseTime_R * (int) materialFluid.getMass())
                         .EUt(Voltage_R)
