@@ -20,7 +20,7 @@ import kono.ceu.materialreplication.common.machines.single.MetaTileEntityScrapMa
 
 public class MRMetaTileEntities {
 
-    // Single : 20000 - 200044
+    // Single : 20050 - 200094
     public static SimpleMachineMetaTileEntity[] DECONSTRUCTOR = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
     public static SimpleMachineMetaTileEntity[] REPLICATOR = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
     public static MetaTileEntityScrapMaker[] SCRAPPER = new MetaTileEntityScrapMaker[GTValues.V.length - 1];
@@ -35,38 +35,38 @@ public class MRMetaTileEntities {
     }
 
     public static void registerSingleMachine() {
-        // 20000 - 20014 : Material Deconstructor
+        // 20050 - 20064 : Material Deconstructor
         for (int i = 1; i < DECONSTRUCTOR.length; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
             if (!GregTechAPI.isHighTier() && i > GTValues.UV)
                 break;
             if (tierDeconstruct <= i)
-                DECONSTRUCTOR[i] = registerMetaTileEntity(20000 + (i - 1),
+                DECONSTRUCTOR[i] = registerMetaTileEntity(20050 + (i - 1),
                         new SimpleMachineMetaTileEntity(
                                 new ResourceLocation(MODID, (String.format("%s.%s", "deconstructor", voltageName))),
                                 MRRecipeMaps.DECONSTRUCTION_RECIPES, MRTextures.DECONSTRUCTOR_OVERLAY, i, true,
                                 GTUtility.hvCappedTankSizeFunction));
         }
 
-        // 20015 - 20029 : Material Replicator
+        // 20065 - 20079 : Material Replicator
         for (int i = 1; i < REPLICATOR.length; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
             if (!GregTechAPI.isHighTier() && i > GTValues.UV)
                 break;
             if (tierReplicate <= i)
-                REPLICATOR[i] = registerMetaTileEntity(20015 + (i - 1),
+                REPLICATOR[i] = registerMetaTileEntity(20065 + (i - 1),
                         new SimpleMachineMetaTileEntity(
                                 new ResourceLocation(MODID, (String.format("%s.%s", "replicator", voltageName))),
                                 MRRecipeMaps.REPLICATION_RECIPES, MRTextures.REPLICATOR_OVERLAY, i, true,
                                 GTUtility.hvCappedTankSizeFunction));
         }
 
-        // 20030 - 20044 Scrapper
+        // 20080 - 20094 Scrapper
         for (int i = 0; i < SCRAPPER.length - 1; i++) {
             String voltageName = GTValues.VN[i + 1].toLowerCase();
             if (!GregTechAPI.isHighTier() && i > GTValues.UV)
                 break;
-            SCRAPPER[i] = registerMetaTileEntity(20030 + i,
+            SCRAPPER[i] = registerMetaTileEntity(20080 + i,
                     new MetaTileEntityScrapMaker(
                             new ResourceLocation(MODID, (String.format("%s.%s", "scrapmaker", voltageName))),
                             MRRecipeMaps.SCRAPMAKER_RECIPES, MRTextures.SCRAPPER_OVERLAY, i + 1,
